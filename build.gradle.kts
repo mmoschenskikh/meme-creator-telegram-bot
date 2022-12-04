@@ -14,6 +14,7 @@ repositories {
 
 val ktorVersion: String by project
 val kotlinxSerializationVersion: String by project
+val telegramBotsVersion: String by project
 
 dependencies {
     implementation("io.ktor:ktor-client-core:$ktorVersion")
@@ -22,6 +23,8 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationVersion")
+
+    implementation("org.telegram:telegrambots:$telegramBotsVersion")
 
     testImplementation(kotlin("test"))
 }
