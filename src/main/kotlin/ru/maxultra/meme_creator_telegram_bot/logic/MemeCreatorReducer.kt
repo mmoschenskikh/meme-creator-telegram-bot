@@ -4,6 +4,8 @@ import org.telegram.telegrambots.meta.api.objects.Message
 import ru.maxultra.meme_creator_telegram_bot.logic.MemeCreator.Eff
 import ru.maxultra.meme_creator_telegram_bot.logic.MemeCreator.Msg
 import ru.maxultra.meme_creator_telegram_bot.model.local.MemeModel
+import ru.maxultra.meme_creator_telegram_bot.tg.Command
+import ru.maxultra.meme_creator_telegram_bot.tg.CommandMatcher.asBotCommand
 import ru.maxultra.meme_creator_telegram_bot.utils.singleToSet
 
 object MemeCreatorReducer {
@@ -16,6 +18,9 @@ object MemeCreatorReducer {
     }
 
     private fun handleMessageReceived(message: Message): Set<Eff> {
+        val command = message.text?.asBotCommand()
+        if (command != null) return handleBotCommand(message.chatId, command)
+
         val photo = message.photo?.maxBy { it.height }
         val hasNoCaption = message.caption.isNullOrBlank()
         if (photo == null || hasNoCaption) return Eff.Tg.UnknownInputDefaultAnswer(message.chatId).singleToSet()
@@ -36,4 +41,8 @@ object MemeCreatorReducer {
 
     private fun handleMakeMemeError(msg: Msg.OnMakeMemeError) =
         Eff.Tg.NotifyBotError(msg.chatId).singleToSet()
+
+    private fun handleBotCommand(chatId: Long, command: Command) = when (command) {
+        Command.START -> Eff.Tg.GreetUser(chatId).singleToSet()
+    }
 }
