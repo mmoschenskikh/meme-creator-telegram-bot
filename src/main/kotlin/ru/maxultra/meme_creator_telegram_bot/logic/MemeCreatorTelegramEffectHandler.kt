@@ -23,11 +23,18 @@ class MemeCreatorTelegramEffectHandler(
 
     override fun invoke(eff: Eff, listener: (Msg) -> Unit): Cancelable = when (eff) {
         !is Eff.Tg -> Job()
+        is Eff.Tg.GreetUser -> greetUser(eff)
         is Eff.Tg.GetPhotoUrl -> getPhotoUrl(eff, listener)
         is Eff.Tg.SendMeme -> sendMeme(eff)
         is Eff.Tg.NotifyBotError -> notifyBotError(eff)
         is Eff.Tg.UnknownInputDefaultAnswer -> sendDefaultAnswer(eff)
     }.toCancelable()
+
+    private fun greetUser(eff: Eff.Tg.GreetUser) = scope.launch {
+        botInteractions
+            ?.greetUserAsync(eff.chatId)
+            ?.await()
+    }
 
     private fun getPhotoUrl(eff: Eff.Tg.GetPhotoUrl, listener: (Msg) -> Unit) = scope.launch {
         botInteractions
