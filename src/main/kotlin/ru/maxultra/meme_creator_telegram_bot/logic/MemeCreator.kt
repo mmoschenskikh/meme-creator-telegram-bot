@@ -20,6 +20,7 @@ object MemeCreator {
 
     sealed class Eff {
         sealed class Tg : Eff() {
+            data class GreetUser(val chatId: Long) : Tg()
             data class GetPhotoUrl(val chatId: Long, val photo: PhotoSize, val caption: String) : Tg()
             data class SendMeme(val chatId: Long, val imageUrl: String) : Tg()
             data class NotifyBotError(val chatId: Long) : Tg()
