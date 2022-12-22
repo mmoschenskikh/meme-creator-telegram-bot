@@ -65,6 +65,7 @@ class MemeCreatorTelegramEffectHandler(
 }
 
 interface MemeCreatorBotAsyncInteractions {
+    fun greetUserAsync(chatId: Long): Deferred<Message>
     fun sendDefaultAnswerForUnknownInputAsync(chatId: Long): Deferred<Message>
     fun getPhotoUrlAsync(photo: PhotoSize): Deferred<String?>
     fun sendPhotoAsync(chatId: Long, imageUrl: String): Deferred<Message>

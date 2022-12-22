@@ -29,6 +29,15 @@ class MemeCreatorBot(
         feature.accept(Msg.OnTgMessageReceived(message))
     }
 
+    override fun greetUserAsync(chatId: Long): Deferred<Message> =
+        sendMessageAsync(
+            chatId = chatId,
+            text = """
+                Hi!
+                Send me a photo with a caption to make a meme.
+            """.trimIndent(),
+        )
+
     override fun sendDefaultAnswerForUnknownInputAsync(chatId: Long): Deferred<Message> =
         sendMessageAsync(
             chatId = chatId,
