@@ -5,4 +5,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class NWGenerateMemeResponse(
     val url: String? = null,
+    val error: String? = null,
 )
