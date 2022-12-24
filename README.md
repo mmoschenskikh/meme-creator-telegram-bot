@@ -1,4 +1,7 @@
 # Meme Creator Telegram Bot
+| develop                                                                                                                            | master                                                                                                                           |
+|------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| ![`develop` tests](https://github.com/mmoschenskikh/meme-creator-telegram-bot/actions/workflows/test.yml/badge.svg?branch=develop) | ![`master` tests](https://github.com/mmoschenskikh/meme-creator-telegram-bot/actions/workflows/test.yml/badge.svg?branch=master) |
 
 A bot for making up memes without leaving Telegram.
 
@@ -24,6 +27,7 @@ credentials.
 For Meme Generation API key, set `MEME_API_TOKEN` environment variable.
 
 For Telegram bot credentials, set `TELEGRAM_BOT_TOKEN` and `TELEGRAM_BOT_USERNAME` environment variables.
+
 ### Running with Docker
 
 First, build the fat jar image:
