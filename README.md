@@ -1,4 +1,7 @@
 # Meme Creator Telegram Bot
+| develop                                                                                                                            | master                                                                                                                           |
+|------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| ![`develop` tests](https://github.com/mmoschenskikh/meme-creator-telegram-bot/actions/workflows/test.yml/badge.svg?branch=develop) | ![`master` tests](https://github.com/mmoschenskikh/meme-creator-telegram-bot/actions/workflows/test.yml/badge.svg?branch=master) |
 
 A bot for making up memes without leaving Telegram.
 
@@ -20,19 +23,10 @@ Any other input will be regarded as incorrect.
 
 First, provide your own [Meme Generation API](https://memebuild.com/api) and [Telegram bot](https://t.me/BotFather)
 credentials.
-For Meme Generation API key, set `ru.maxultra.meme_creator_telegram_bot.api.config.MemeApiToken.MEME_API_TOKEN`:
 
-```kotlin
-internal const val MEME_API_TOKEN: String = "0123456789abcdefghijklmnopqrst"
-```
+For Meme Generation API key, set `MEME_API_TOKEN` environment variable.
 
-For Telegram bot credentials, set `ru.maxultra.meme_creator_telegram_bot.tg.TelegramBotSettingsKt.TELEGRAM_BOT_TOKEN`
-and `ru.maxultra.meme_creator_telegram_bot.tg.TelegramBotSettingsKt.TELEGRAM_BOT_USERNAME`:
-
-```kotlin
-internal const val TELEGRAM_BOT_TOKEN: String = "0123456789:abcdefghijklmnopqrstuvwxyzABCDEFGJI"
-internal const val TELEGRAM_BOT_USERNAME: String = "SomeCoolBotUsername"
-```
+For Telegram bot credentials, set `TELEGRAM_BOT_TOKEN` and `TELEGRAM_BOT_USERNAME` environment variables.
 
 ### Running with Docker
 
@@ -45,7 +39,7 @@ docker build -t meme-creator-telegram-bot .
 Then, run the application:
 
 ```
-docker run meme-creator-telegram-bot
+docker run --env-file env.list meme-creator-telegram-bot
 ```
 
 ### Running without Docker
